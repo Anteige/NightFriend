@@ -4,26 +4,27 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
+      <x>780</x>
       <y>560</y>
-      <w>150</w>
-      <h>100</h>
+      <w>190</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Objet_de_Messier
+    <panel_attributes>*Objet_de_Messier*
 --
 +id : int
-+constellation : string</panel_attributes>
++constellation : string
++diametreApparent : Donnee</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>250</x>
+      <x>360</x>
       <y>560</y>
       <w>120</w>
-      <h>100</h>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Etoile
+    <panel_attributes>*Etoile*
 --
 </panel_attributes>
     <additional_attributes/>
@@ -31,34 +32,35 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>350</y>
-      <w>210</w>
-      <h>100</h>
+      <x>530</x>
+      <y>330</y>
+      <w>230</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>Objet_celestre
+    <panel_attributes>*Objet_celestre*
 --
-+ascensionDroite : Donnee[]
-+declinaison : Donnee
-+distance : Donnee
-+MagnitudeApparente : Donnee</panel_attributes>
++ascensionDroite_ : Donnee[]
++declinaison_ : Donnee
++distance_ : Donnee
++magnitudeApparente_ : Donnee
++nom_ : string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>750</x>
       <y>440</y>
-      <w>130</w>
+      <w>110</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
+      <x>410</x>
       <y>440</y>
       <w>140</w>
       <h>140</h>
