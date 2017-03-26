@@ -13,7 +13,7 @@ Donnee::Donnee(string nom, double valeur, string unite) :
 {
 }
 
-string Donnee::obtenirNom1() const
+string Donnee::obtenirNom() const
 {
 	return nom_;
 }
