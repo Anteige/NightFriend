@@ -13,7 +13,7 @@ Donnee::Donnee(string nom, double valeur, string unite) :
 {
 }
 
-string Donnee::obtenirNom() const
+string Donnee::obtenirNom1() const
 {
 	return nom_;
 }
@@ -171,7 +171,7 @@ Donnee Donnee::operator^(const double& nombre) const
 
 ostream& operator<<(ostream& out, const Donnee& donnee)
 {
-	out << donnee.nom_		<< ' ' 
+	out << donnee.nom_		<< ' '
 		<< donnee.valeur_	<< ' '
 		<< donnee.unite_	<< ' '
 		<< endl;
