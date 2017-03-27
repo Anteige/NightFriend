@@ -1,19 +1,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// \author		Antoine Gaulin
-/// \file		Objet_celestre.h
+/// \file		Objet_celeste.h
 /// \date		16/03/17
-/// \brief		Definition de la classe objet celestre
+/// \brief		Definition de la classe objet celeste
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <string>
 #include "Donnee.h"
 
-#ifndef _OBJET_CELESTRE_H_
-#define _OBJET_CELESTRE_H_
+#ifndef _OBJET_CELESTE_H_
+#define _OBJET_CELESTE_H_
 
 using namespace std;
 
-class Objet_celestre
+class Objet_celeste
 {
 
 public:
@@ -23,7 +23,7 @@ public:
 	///
 	/// 
 	///
-	Objet_celestre();
+	Objet_celeste();
 
 private:
 	Donnee ascensionDroite_[NB_DONNES];
@@ -33,4 +33,4 @@ private:
 	string nom_;
 };
 
-#endif // _OBJET_CELESTRE_H_
+#endif // _OBJET_CELESTE_H_

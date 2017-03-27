@@ -73,7 +73,7 @@ void lirefichierbinaire(ListeDesObjetsMessiers& objetsMessier) {
 
 	char chaine[N_MAX_CHAR_TYPE];
 
-	ifstream fichierBinaire("Liste des objets", ios::binary);
+	ifstream fichierBinaire("database,txt");
 
 	fichierBinaire.seekg(0, ios::beg);
 
