@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>530</y>
+      <w>190</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>*Objet_de_Messier*
+--
++id : int
++diametreApparent : Donnee</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>330</y>
+      <w>230</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>*Objet_celestre*
+--
++ascensionDroite_ : Donnee[]
++declinaison_ : Donnee
++distance_ : Donnee
++magnitudeApparente_ : Donnee
++nom_ : string
++type_ : string
++constellation : string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>470</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

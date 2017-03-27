@@ -17,8 +17,13 @@ class Objet_celestre
 {
 
 public:
-	
+
 	enum AscensionDroite{ HEURE, MINUTE, NB_DONNES };
+
+	///
+	/// 
+	///
+	Objet_celestre();
 
 private:
 	Donnee ascensionDroite_[NB_DONNES];
