@@ -17,8 +17,10 @@ class Objet_celestre
 {
 
 public:
-	
+
 	enum AscensionDroite{ HEURE, MINUTE, NB_DONNES };
+
+
 
 private:
 	Donnee ascensionDroite_[NB_DONNES];
@@ -26,6 +28,8 @@ private:
 	Donnee distance_;
 	Donnee magnitudeApparente_;
 	string nom_;
+	string type_;
+	string constellation_;
 };
 
 #endif // _OBJET_CELESTRE_H_
