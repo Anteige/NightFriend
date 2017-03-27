@@ -50,7 +50,7 @@ private:
 	Donnee distance_;
 	Donnee magnitudeApparente_;
 	string nom_;
-	string type_;
+    string type_;
 	string constellation_;
 };
 

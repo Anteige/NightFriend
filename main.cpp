@@ -1,9 +1,9 @@
-/*
-FICHIER : ObjetsMessiers.cpp
-AUTEUR : Antoine Gaulin
-DATE : 30/10/2016 - MAJ 10/12/2016
-DESCRIPTION : Ce programme permet de manipuler une liste des objets Messiers
-*/
+///////////////////////////////////////////////////////////////////////////////
+// \autors	Antoine Gaulin
+// \file	main.cpp
+// \date	24/03/2017
+// \brief	Ce programme permet de gérer les nombreux objets de Messiers.
+///////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include <iomanip>
@@ -21,6 +21,11 @@ static const int	N_OBJETS_MESSIERS = 110,
 #pragma region Enumerations
 
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
+
+enum Types { AMAS_OUVERT, AMAS_GLOBULAIRE, NEBULEUSE_PLANETAIRE, 
+			 STARFORMING_NEBULA, GALAXIE_SPIRALE, GALAXIE_ELIPTIQUE,
+			 GALAXIE_IRREGULIERE, GALAXIE_LENTILLE, RESTANT_DE_SUPERNOVA,
+			 ASTERISME = 'A', PATCH_VOIE_LACTEE = 'B', ETOILE_BINAIRE = 'B' };
 
 enum Moments { SOIR, MINUIT, MATIN };
 
