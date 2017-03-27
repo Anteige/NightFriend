@@ -18,7 +18,7 @@ static const int	N_OBJETS_MESSIERS = 110,
 					N_DE_PERIODE = 3,
 					N_MAX_CHAR_TYPE = 20;
 
-#pragma region Énumérations
+#pragma region Enumerations
 
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
 
@@ -35,7 +35,7 @@ struct AcensionDroite {
 
 struct Informations {
 	bool			estAffiche = true;
-	int				déclinaison = 0;
+	int				declinaison = 0;
 	double			magnitude = 0.0;
 	unsigned		nom = 0;
 	string			type = "";
@@ -44,13 +44,13 @@ struct Informations {
 
 struct ListeDesObjetsMessiers {
 	int taille = N_OBJETS_MESSIERS;
-	Informations élément[N_OBJETS_MESSIERS];
+	Informations element[N_OBJETS_MESSIERS];
 };
 
-struct Étoiles {
-	int				déclinaison = 0;
+struct Etoiles {
+	int				declinaison = 0;
 	string			nom = "",
-		constellation = "";
+                    constellation = "";
 	AcensionDroite	acensionDroite = { 0 , 0 };
 };
 
@@ -59,7 +59,7 @@ struct Tableau3Variables {
 	int taille1 = N_DE_PERIODE,
 		taille2 = N_DE_MOIS;
 
-	double élément[N_DE_PERIODE][N_DE_MOIS];
+	double element[N_DE_PERIODE][N_DE_MOIS];
 };
 
 #pragma endregion
@@ -74,17 +74,17 @@ void lirefichierbinaire(ListeDesObjetsMessiers& objetsMessier) {
 
 	for (int i = 0; i < N_OBJETS_MESSIERS; i++) {
 
-		fichierBinaire.read((char*)&objetsMessier.élément[i].nom, sizeof(int));
+		fichierBinaire.read((char*)&objetsMessier.element[i].nom, sizeof(int));
 
 		fichierBinaire.read((char*)&chaine, sizeof(chaine));
-		objetsMessier.élément[i].type = chaine;
+		objetsMessier.element[i].type = chaine;
 
-		fichierBinaire.read((char*)&objetsMessier.élément[i].magnitude, sizeof(double));
+		fichierBinaire.read((char*)&objetsMessier.element[i].magnitude, sizeof(double));
 
-		fichierBinaire.read((char*)&objetsMessier.élément[i].déclinaison, sizeof(int));
+		fichierBinaire.read((char*)&objetsMessier.element[i].declinaison, sizeof(int));
 
-		fichierBinaire.read((char*)&objetsMessier.élément[i].acensionDroite.heure, sizeof(int));
-		fichierBinaire.read((char*)&objetsMessier.élément[i].acensionDroite.minute, sizeof(int));
+		fichierBinaire.read((char*)&objetsMessier.element[i].acensionDroite.heure, sizeof(int));
+		fichierBinaire.read((char*)&objetsMessier.element[i].acensionDroite.minute, sizeof(int));
 	}
 
 }
@@ -92,25 +92,25 @@ void lirefichierbinaire(ListeDesObjetsMessiers& objetsMessier) {
 void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 
 	for (int i = 0; i < passagesAuMeridien.taille1; i++) {
-		passagesAuMeridien.élément[SOIR + i][NOV] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.élément[SOIR + i][DEC] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.élément[SOIR + i][JAN] = 1.5 + 3 * (i + 1);
-		passagesAuMeridien.élément[SOIR + i][FEV] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.élément[SOIR + i][MAR] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.élément[SOIR + i][AVR] = 1.5 + 3 * (i + 3);
-		passagesAuMeridien.élément[SOIR + i][MAI] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.élément[SOIR + i][JUN] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.élément[SOIR + i][JUL] = 1.5 + 3 * (i + 5);
-		passagesAuMeridien.élément[SOIR + i][AOU] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.élément[SOIR + i][SEP] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.élément[SOIR + i][OCT] = 1.5 + 3 * (i + 7);
+		passagesAuMeridien.element[SOIR + i][NOV] = 1.5 + 3 * (i + 0);
+		passagesAuMeridien.element[SOIR + i][DEC] = 1.5 + 3 * (i + 0);
+		passagesAuMeridien.element[SOIR + i][JAN] = 1.5 + 3 * (i + 1);
+		passagesAuMeridien.element[SOIR + i][FEV] = 1.5 + 3 * (i + 2);
+		passagesAuMeridien.element[SOIR + i][MAR] = 1.5 + 3 * (i + 2);
+		passagesAuMeridien.element[SOIR + i][AVR] = 1.5 + 3 * (i + 3);
+		passagesAuMeridien.element[SOIR + i][MAI] = 1.5 + 3 * (i + 4);
+		passagesAuMeridien.element[SOIR + i][JUN] = 1.5 + 3 * (i + 4);
+		passagesAuMeridien.element[SOIR + i][JUL] = 1.5 + 3 * (i + 5);
+		passagesAuMeridien.element[SOIR + i][AOU] = 1.5 + 3 * (i + 6);
+		passagesAuMeridien.element[SOIR + i][SEP] = 1.5 + 3 * (i + 6);
+		passagesAuMeridien.element[SOIR + i][OCT] = 1.5 + 3 * (i + 7);
 	}
 
 }
 
 void initialiserEstAfficher(ListeDesObjetsMessiers& liste) {
 	for (int i = 0; i < liste.taille; i++)
-		liste.élément[i].estAffiche = true;
+		liste.element[i].estAffiche = true;
 }
 
 void afficherMenu() {
@@ -134,12 +134,12 @@ void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 	cout << "________________________________________________________________________"  << endl;
 
 	for (int i = 0; i < liste.taille; i++) {
-		if (liste.élément[i].estAffiche) {
-			cout << ' ' << 'M' << liste.élément[i].nom << '\t'
-				<< "Type: " << left << setw(17) << setfill(' ') << liste.élément[i].type << '\t'
-				<< "Magnitude: " << liste.élément[i].magnitude << '\t'
-				<< "AD: " << right << setw(2) << setfill('0') << liste.élément[i].acensionDroite.heure << ':' << right << setw(2) << setfill('0') << liste.élément[i].acensionDroite.minute << '\t'
-				<< "Dec: " << setw(3) << setfill(' ') << liste.élément[i].déclinaison << endl;
+		if (liste.element[i].estAffiche) {
+			cout << ' ' << 'M' << liste.element[i].nom << '\t'
+				<< "Type: " << left << setw(17) << setfill(' ') << liste.element[i].type << '\t'
+				<< "Magnitude: " << liste.element[i].magnitude << '\t'
+				<< "AD: " << right << setw(2) << setfill('0') << liste.element[i].acensionDroite.heure << ':' << right << setw(2) << setfill('0') << liste.element[i].acensionDroite.minute << '\t'
+				<< "Dec: " << setw(3) << setfill(' ') << liste.element[i].declinaison << endl;
 			compteur++;
 		}
 	}
@@ -163,11 +163,11 @@ void afficherObjet(ListeDesObjetsMessiers liste) {
 	if (objet >= 0 && objet <= 110) {
 		cout << "Voici les informations trouves sur " << 'M' << objet-- << " : " << endl
 			<< "--------------------" << endl
-			<< 'M' << liste.élément[objet].nom << endl
-			<< "Type: " << left << setw(17) << setfill(' ') << liste.élément[objet].type << endl
-			<< "Magnitude: " << liste.élément[objet].magnitude << endl
-			<< "AD: " << right << setw(2) << setfill('0') << liste.élément[objet].acensionDroite.heure << ':' << right << setw(2) << setfill('0') << liste.élément[objet].acensionDroite.minute << endl
-			<< "Dec: " << setw(3) << setfill(' ') << liste.élément[objet].déclinaison << endl
+			<< 'M' << liste.element[objet].nom << endl
+			<< "Type: " << left << setw(17) << setfill(' ') << liste.element[objet].type << endl
+			<< "Magnitude: " << liste.element[objet].magnitude << endl
+			<< "AD: " << right << setw(2) << setfill('0') << liste.element[objet].acensionDroite.heure << ':' << right << setw(2) << setfill('0') << liste.element[objet].acensionDroite.minute << endl
+			<< "Dec: " << setw(3) << setfill(' ') << liste.element[objet].declinaison << endl
 			<< "--------------------" << endl;
 	}
 	else
@@ -175,19 +175,19 @@ void afficherObjet(ListeDesObjetsMessiers liste) {
 
 }
 
-void afficherÉtoileGuide(Étoiles étoile) {
-	if (étoile.nom != "") {
-		cout << endl << "L'etoile de reperage est " << étoile.nom << " situee dans la constellation " << étoile.constellation << "." << endl
+void afficherEtoileGuide(Etoiles etoile) {
+	if (etoile.nom != "") {
+		cout << endl << "L'etoile de reperage est " << etoile.nom << " situee dans la constellation " << etoile.constellation << "." << endl
 		 	 << "Les coordonees pour cette etoile sont :" << endl
-			 << "AD: " << right << setw(2) << setfill('0') << étoile.acensionDroite.heure << ':' << right << setw(2) << setfill('0') << étoile.acensionDroite.minute << endl
-			 << "Dec: " << étoile.déclinaison << endl;
+			 << "AD: " << right << setw(2) << setfill('0') << etoile.acensionDroite.heure << ':' << right << setw(2) << setfill('0') << etoile.acensionDroite.minute << endl
+			 << "Dec: " << etoile.declinaison << endl;
 	}
 }
 
 void testFacile(ListeDesObjetsMessiers& liste) {
 	for (int i = 0; i < liste.taille; i++) {
-		if (liste.élément[i].magnitude >= 8)
-			liste.élément[i].estAffiche = false;
+		if (liste.element[i].magnitude >= 8)
+			liste.element[i].estAffiche = false;
 	}
 }
 
@@ -198,7 +198,7 @@ void testVisible(const Tableau3Variables& passagesAuMeridien, ListeDesObjetsMess
 					mois = 0;
 	AcensionDroite	acensionsDroiteMin,
 					acensionsDroiteMax;
-	Étoiles			étoileGuide;
+	Etoiles			etoileGuide;
 
 	system("cls");
 
@@ -237,82 +237,82 @@ void testVisible(const Tableau3Variables& passagesAuMeridien, ListeDesObjetsMess
 		}
 	} while (periode != SOIR && periode != MINUIT && periode != MATIN);
 
-	acensionsDroiteMin.heure = passagesAuMeridien.élément[periode][mois] - 1.5;
-	acensionsDroiteMax.heure = passagesAuMeridien.élément[periode][mois] + 1.5;
+	acensionsDroiteMin.heure = passagesAuMeridien.element[periode][mois] - 1.5;
+	acensionsDroiteMax.heure = passagesAuMeridien.element[periode][mois] + 1.5;
 
 	for (int i = 0; i < liste.taille; i++) {
-		bool EstDansLaPlageHoraire = (acensionsDroiteMin.heure <= liste.élément[i].acensionDroite.heure) && (liste.élément[i].acensionDroite.heure <= acensionsDroiteMax.heure);
+		bool EstDansLaPlageHoraire = (acensionsDroiteMin.heure <= liste.element[i].acensionDroite.heure) && (liste.element[i].acensionDroite.heure <= acensionsDroiteMax.heure);
 		if (!EstDansLaPlageHoraire)
-			liste.élément[i].estAffiche = false;
+			liste.element[i].estAffiche = false;
 	}
 }
 
-void trouverÉtoileGuide(ListeDesObjetsMessiers liste, Étoiles& étoileGuide) {
+void trouverEtoileGuide(ListeDesObjetsMessiers liste, Etoiles& etoileGuide) {
 	bool estTrouve = false;
 	for (int i = 0; i < liste.taille; i++) {
-		if (liste.élément[i].estAffiche == true && !estTrouve) {
-			if (0 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 3) {
-				étoileGuide.nom = "Mirach";
-				étoileGuide.constellation = "Andromeda";
-				étoileGuide.déclinaison = 35;
-				étoileGuide.acensionDroite.heure = 1;
-				étoileGuide.acensionDroite.minute = 9;
+		if (liste.element[i].estAffiche == true && !estTrouve) {
+			if (0 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 3) {
+				etoileGuide.nom = "Mirach";
+				etoileGuide.constellation = "Andromeda";
+				etoileGuide.declinaison = 35;
+				etoileGuide.acensionDroite.heure = 1;
+				etoileGuide.acensionDroite.minute = 9;
 				estTrouve = true;
 			}
-			else if (3 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 6) {
-				étoileGuide.nom = "Aldebaran";
-				étoileGuide.constellation = "Taurus";
-				étoileGuide.déclinaison = 16;
-				étoileGuide.acensionDroite.heure = 4;
-				étoileGuide.acensionDroite.minute = 35;
+			else if (3 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 6) {
+				etoileGuide.nom = "Aldebaran";
+				etoileGuide.constellation = "Taurus";
+				etoileGuide.declinaison = 16;
+				etoileGuide.acensionDroite.heure = 4;
+				etoileGuide.acensionDroite.minute = 35;
 				estTrouve = true;
 			}
-			else if (6 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 9) {
-				étoileGuide.nom = "Pollux";
-				étoileGuide.constellation = "Gemini";
-				étoileGuide.déclinaison = 28;
-				étoileGuide.acensionDroite.heure = 7;
-				étoileGuide.acensionDroite.minute = 45;
+			else if (6 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 9) {
+				etoileGuide.nom = "Pollux";
+				etoileGuide.constellation = "Gemini";
+				etoileGuide.declinaison = 28;
+				etoileGuide.acensionDroite.heure = 7;
+				etoileGuide.acensionDroite.minute = 45;
 				estTrouve = true;
 			}
-			else if (9 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 12) {
-				étoileGuide.nom = "Algieba";
-				étoileGuide.constellation = "Leo";
-				étoileGuide.déclinaison = 19;
-				étoileGuide.acensionDroite.heure = 10;
-				étoileGuide.acensionDroite.minute = 19;
+			else if (9 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 12) {
+				etoileGuide.nom = "Algieba";
+				etoileGuide.constellation = "Leo";
+				etoileGuide.declinaison = 19;
+				etoileGuide.acensionDroite.heure = 10;
+				etoileGuide.acensionDroite.minute = 19;
 				estTrouve = true;
 			}
-			else if (12 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 15) {
-				étoileGuide.nom = "Alkaid";
-				étoileGuide.constellation = "Ursa Major";
-				étoileGuide.déclinaison = 49;
-				étoileGuide.acensionDroite.heure = 13;
-				étoileGuide.acensionDroite.minute = 47;
+			else if (12 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 15) {
+				etoileGuide.nom = "Alkaid";
+				etoileGuide.constellation = "Ursa Major";
+				etoileGuide.declinaison = 49;
+				etoileGuide.acensionDroite.heure = 13;
+				etoileGuide.acensionDroite.minute = 47;
 				estTrouve = true;
 			}
-			else if (15 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 18) {
-				étoileGuide.nom = "Kornephoros";
-				étoileGuide.constellation = "Hercules";
-				étoileGuide.déclinaison = 21;
-				étoileGuide.acensionDroite.heure = 16;
-				étoileGuide.acensionDroite.minute = 30;
+			else if (15 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 18) {
+				etoileGuide.nom = "Kornephoros";
+				etoileGuide.constellation = "Hercules";
+				etoileGuide.declinaison = 21;
+				etoileGuide.acensionDroite.heure = 16;
+				etoileGuide.acensionDroite.minute = 30;
 				estTrouve = true;
 			}
-			else if (18 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 21) {
-				étoileGuide.nom = "Albireo";
-				étoileGuide.constellation = "Cygnus";
-				étoileGuide.déclinaison = 27;
-				étoileGuide.acensionDroite.heure = 19;
-				étoileGuide.acensionDroite.minute = 30;
+			else if (18 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 21) {
+				etoileGuide.nom = "Albireo";
+				etoileGuide.constellation = "Cygnus";
+				etoileGuide.declinaison = 27;
+				etoileGuide.acensionDroite.heure = 19;
+				etoileGuide.acensionDroite.minute = 30;
 				estTrouve = true;
 			}
-			else if (21 <= liste.élément[i].acensionDroite.heure && liste.élément[i].acensionDroite.heure < 24) {
-				étoileGuide.nom = "Matar";
-				étoileGuide.constellation = "Pegasus";
-				étoileGuide.déclinaison = 30;
-				étoileGuide.acensionDroite.heure = 22;
-				étoileGuide.acensionDroite.minute = 43;
+			else if (21 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 24) {
+				etoileGuide.nom = "Matar";
+				etoileGuide.constellation = "Pegasus";
+				etoileGuide.declinaison = 30;
+				etoileGuide.acensionDroite.heure = 22;
+				etoileGuide.acensionDroite.minute = 43;
 				estTrouve = true;
 			}
 		}
@@ -324,7 +324,7 @@ int main() {
 	int mois = -1;
 	ListeDesObjetsMessiers objetsMessier;
 	Tableau3Variables passagesAuMeridien;
-	Étoiles étoileGuide;
+	Etoiles etoileGuide;
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 12);
@@ -352,9 +352,9 @@ int main() {
 
 			case 2 :
 				testVisible(passagesAuMeridien, objetsMessier);
-				trouverÉtoileGuide(objetsMessier, étoileGuide);
+				trouverEtoileGuide(objetsMessier, etoileGuide);
 				afficherListe("Liste des objets Messiers actuellement visibles", objetsMessier);
-				afficherÉtoileGuide(étoileGuide);
+				afficherEtoileGuide(etoileGuide);
 				break;
 
 			case 3 :
@@ -365,9 +365,9 @@ int main() {
 			case 4 :
 				testFacile(objetsMessier);
 				testVisible(passagesAuMeridien, objetsMessier);
-				trouverÉtoileGuide(objetsMessier, étoileGuide);
+				trouverEtoileGuide(objetsMessier, etoileGuide);
 				afficherListe("Liste des objets Messiers faciles et visibles", objetsMessier);
-				afficherÉtoileGuide(étoileGuide);
+				afficherEtoileGuide(etoileGuide);
 				break;
 
 			case 5 :
