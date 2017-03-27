@@ -47,14 +47,9 @@ Donnee Objet_celeste::obtenirMagnitudeApparent() const
 	return magnitudeApparente_;
 }
 
-Donnee Objet_celeste::obtenirAscensionDroiteHeure() const
+AscensionDroite Objet_celeste::obtenirAscensionDroite() const
 {
-	return ascensionDroite_.heure;
-}
-
-Donnee Objet_celeste::obtenirAscensionDroiteMinute() const
-{
-	return ascensionDroite_.minute;
+	return ascensionDroite_;
 }
 
 void Objet_celeste::mettreNom(const string& nom)
@@ -87,12 +82,7 @@ void Objet_celeste::mettreMagnitudeApparente(const Donnee& magnitudeApparente)
     magnitudeApparente_ = magnitudeApparente;
 }
 
-void Objet_celeste::mettreAscensionDroiteHeure(const Donnee& ascensionDroiteHeure)
+void Objet_celeste::mettreAscensionDroite(const AscensionDroite& ascensionDroite)
 {
-	ascensionDroite_.heure = ascensionDroiteHeure;
-}
-
-void Objet_celeste::mettreAscensionDroiteMinute(const Donnee& ascensionDroiteMinute)
-{
-	ascensionDroite_.minute = ascensionDroiteMinute;
+	ascensionDroite_ = ascensionDroite;
 }

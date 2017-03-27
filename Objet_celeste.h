@@ -31,13 +31,7 @@ public:
 	/// \brief	accessor de ascensionDroite_.heure
 	/// \return	Donnee	l'ascension droite heure
 	///
-    Donnee obtenirAscensionDroiteHeure() const;
-
-    ///
-	/// \brief	accessor de ascensionDroite_.minute
-	/// \return	Donnee	l'ascension droite minute
-	///
-    Donnee obtenirAscensionDroiteMinute() const;
+    AscensionDroite obtenirAscensionDroite() const;
 
     ///
 	/// \brief	accessor de declinaison_
@@ -111,6 +105,12 @@ public:
 	///
 	void mettreMagnitudeApparente(const Donnee& magnitudeApparente);
 
+	///
+	/// \brief	Mutator de magnitudeApparente_
+	/// \param	magnitudeApparente		La nouvelle magnitude apparente de la donnee
+	///
+	void mettreAscensionDroite(const AscensionDroite& ascensionDroite);
+
 private:
 
 	struct AscensionDroite {
@@ -118,6 +118,7 @@ private:
             minute;
     };
 
+    AscensionDroite ascensionDroite_;
 	Donnee declinaison_;
 	Donnee distance_;
 	Donnee magnitudeApparente_;
