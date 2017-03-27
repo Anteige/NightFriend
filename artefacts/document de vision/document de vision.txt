@@ -1,0 +1,27 @@
+================================================================================
+	Document de vision						20/03/17
+================================================================================
+
+Description du problème :
+Les objets de Messier sont très nombreux et il est parfois difficile de savoir 
+quels objets sont observables à un instant donné lors d'une observation au 
+télescope.
+
+Description de la solution :
+On veut pouvoir savoir quels objets Messiers sont observables pour un moment
+donné. Une liste des objets visibles sera afficher en montrant leurs coordonées
+et des informations importantes. La position d'une étoile accessible sera aussi
+disponible pour faciliter le repérage.
+
+Fonctionnalités essentiels :
+- Calculer les objets de Messiers visible en fonction du temps.
+- Afficher les informations essentiels à un objets de Messier.
+- Proposer une étoile pour le repérage avec ses informations essentiels.
+- Afficher de couleur rouge pour minimiser l'impact sur la vision nocturne.
+
+Fonctionnalités additionnels :
+- Gérer le temps de façon automatique.
+- Élargir la base de donnée pour les étoiles binaires et particulières.
+- Élargir la base de donnée pour les constellations et faciliter le repérage.
+
+Auteurs : Antoine Gaulin
