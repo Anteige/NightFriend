@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-/// \author		Antoine Gaulin
+/// \author		Antoine Gaulin & JS Lemaire
 /// \file		Objet_celestre.h
 /// \date		16/03/17
 /// \brief		Definition de la classe objet celestre
@@ -20,7 +20,29 @@ public:
 
 	enum AscensionDroite{ HEURE, MINUTE, NB_DONNES };
 
+    ///
+	/// \brief	accessor de ascensionDroite_
+	/// \return	Donnee	l'ascension droite
+	///
+    Donnee obtenirAscensionDroite() const;
 
+    ///
+	/// \brief	accessor de declinaison_
+	/// \return	Donnee	la declinaison
+	///
+	Donnee obtenirDeclinaison() const;
+
+	///
+	/// \brief	accessor de declinaison_
+	/// \return	Donnee	la declinaison
+	///
+	Donnee obtenirDeclinaison() const;
+
+	///
+	/// \brief	accessor de declinaison_
+	/// \return	Donnee	la declinaison
+	///
+	Donnee obtenirDeclinaison() const;
 
 private:
 	Donnee ascensionDroite_[NB_DONNES];
