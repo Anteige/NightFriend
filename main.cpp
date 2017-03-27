@@ -22,7 +22,7 @@ static const int	N_OBJETS_MESSIERS = 110,
 
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
 
-enum Types { AMAS_OUVERT, AMAS_GLOBULAIRE, NEBULEUSE_PLANETAIRE, 
+enum Types { AMAS_OUVERT, AMAS_GLOBULAIRE, NEBULEUSE_PLANETAIRE,
 			 STARFORMING_NEBULA, GALAXIE_SPIRALE, GALAXIE_ELIPTIQUE,
 			 GALAXIE_IRREGULIERE, GALAXIE_LENTILLE, RESTANT_DE_SUPERNOVA,
 			 ASTERISME = 'A', PATCH_VOIE_LACTEE = 'B', ETOILE_BINAIRE = 'B' };
@@ -123,7 +123,8 @@ void afficherMenu() {
 	cout << "1 - Afficher Tout les objets Messiers" << endl;
 	cout << "2 - Afficher Tout les objets Messiers actuellement visible" << endl;
 	cout << "3 - Afficher Tout les objets Messiers de niveau facile" << endl;
-	cout << "4 - Afficher Tout les objets Messiers de niveau facile actuellement visible" << endl;
+	cout << "4 - Afficher Tout les objets Messiers de niveau facile actuellement visible"
+         << endl;
 	cout << "5 - Afficher les informations d'un objet Messier specifique" << endl;
 	cout << "6 - Afficher le menu" << endl;
 	cout << "0 - Fermer le programme" << endl;
