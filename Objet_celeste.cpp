@@ -9,9 +9,12 @@
 
 Objet_celeste::Objet_celeste(const string& nom, const string& type,
                                                 const string& constellation) :
-
-	nom_(nom), type_(type), constellation_(constellation), declinaison_(0),
-	distance_(0), magnitudeApparente_(0)
+	nom_(nom), 
+	type_(type), 
+	constellation_(constellation), 
+	declinaison_(0),
+	distance_(0), 
+	magnitudeApparente_(0)
 {
     ascensionDroite_.heure = 0;
     ascensionDroite_.minute = 0;
@@ -42,7 +45,7 @@ Donnee Objet_celeste::obtenirDistance() const
 	return distance_;
 }
 
-Donnee Objet_celeste::obtenirMagnitudeApparent() const
+Donnee Objet_celeste::obtenirMagnitudeApparente() const
 {
 	return magnitudeApparente_;
 }

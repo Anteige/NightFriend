@@ -69,31 +69,6 @@ struct Tableau3Variables {
 
 #pragma endregion
 
-void lirefichierbinaire(ListeDesObjetsMessiers& objetsMessier) {
-
-	char chaine[N_MAX_CHAR_TYPE];
-
-	ifstream fichierBinaire("database,txt");
-
-	fichierBinaire.seekg(0, ios::beg);
-
-	for (int i = 0; i < N_OBJETS_MESSIERS; i++) {
-
-		fichierBinaire.read((char*)&objetsMessier.element[i].nom, sizeof(int));
-
-		fichierBinaire.read((char*)&chaine, sizeof(chaine));
-		objetsMessier.element[i].type = chaine;
-
-		fichierBinaire.read((char*)&objetsMessier.element[i].magnitude, sizeof(double));
-
-		fichierBinaire.read((char*)&objetsMessier.element[i].declinaison, sizeof(int));
-
-		fichierBinaire.read((char*)&objetsMessier.element[i].acensionDroite.heure, sizeof(int));
-		fichierBinaire.read((char*)&objetsMessier.element[i].acensionDroite.minute, sizeof(int));
-	}
-
-}
-
 void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 
 	for (int i = 0; i < passagesAuMeridien.taille1; i++) {
