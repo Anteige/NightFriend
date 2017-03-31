@@ -62,5 +62,11 @@ ObjetDeMessier* ListeObjetsDeMessier::trouver(int id) const
 
 void ListeObjetsDeMessier::LireFichier()
 {
+	// TODO: Completer l'implementation
+}
 
+ostream& ListeObjetsDeMessier::afficher(ostream & out)
+{
+	// TODO: Completer l'implementation
+	return out;
 }
