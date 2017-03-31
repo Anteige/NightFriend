@@ -2,11 +2,14 @@
 /// \author		Antoine Gaulin
 /// \file		utilitaire.h
 /// \date		26/03/17
-/// \brief		Ce fichier contient un enssemble de trucs utiles
+/// \brief		Ce fichier contient un enssemble de trucs utiles.
 ////////////////////////////////////////////////////////////////////////////////
 
-struct AscensionDroite
+///
+///\brief  Structure permetant d'utiliser une donnee double.
+///
+struct DonneeDouble
 {
-	Donnee	heure,
-		minute;
+	Donnee	donnee,
+			precision;
 };
