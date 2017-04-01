@@ -5,15 +5,14 @@
 /// \brief		Cette classe permet de cree un objet de Messier.
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "Donnee.h"
-#include "utilitaire.h"
+#include "ObjetCeleste.h"
 
 #ifndef _OBJET_DE_MESSIER_H_
 #define _OBJET_DE_MESSIER_H_
 
 using namespace std;
 
-class ObjetDeMessier
+class ObjetDeMessier : ObjetCeleste
 {
 
 public:
@@ -21,6 +20,7 @@ public:
     ///
 	///\brief  Constructeur de la classe.
 	///\param  id					L'id de l'objet de Messier.
+	///\param  nom					Le nom de l'objet en NGC.
 	///\param  constellation		Le nom de la constellation repere.
 	///\param  type					Le type de l'objet Messier.
 	///\param  ascensionDroite		Les coordonnees de l'ascension droite.
@@ -29,15 +29,15 @@ public:
 	///\param  distance				La distance de l'objet.
 	///\param  diametreApparent		Le diametre apparent de l'objet.
 	///
-	ObjetDeMessier( int id = 000,
-					string constellation = "CON",
-					string type_ = "0",
-					DonneeDouble ascensionDroite = { Donnee(), Donnee() },
-					DonneeDouble declinaison = { Donnee(), Donnee() },
-					Donnee magnitudeApparente = Donnee(),
-					Donnee distance = Donnee(),
-					Donnee diametreApparent = Donnee()
-				  );
+	ObjetDeMessier(const string& nom,
+				   const string& constellation,
+				   const DonneeDouble& ascensionDroite,
+				   const DonneeDouble& declinaison,
+				   int id = 000,
+				   const string& type = "0",
+				   const Donnee& magnitudeApparente = Donnee(),
+				   const Donnee& distance = Donnee(),
+				   const Donnee& diametreApparent = Donnee());
 
 	///
 	///\brief  Accessor de id_.
@@ -48,10 +48,7 @@ public:
 private:
 
 	int	id_;
-	string constellation_;
 	string type_;
-    DonneeDouble ascensionDroite_;
-	DonneeDouble declinaison_;
 	Donnee magnitudeApparente_;
 	Donnee distance_;
 	Donnee diametreApparent_;

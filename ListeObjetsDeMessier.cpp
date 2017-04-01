@@ -60,7 +60,7 @@ ObjetDeMessier* ListeObjetsDeMessier::trouver(int id) const
 		return nullptr;
 }
 
-void ListeObjetsDeMessier::LireFichier()
+void ListeObjetsDeMessier::lireFichier()
 {
 	// TODO: Completer l'implementation
 }

@@ -20,44 +20,29 @@ static const int	N_OBJETS_MESSIERS = 110,
 
 #pragma region Enumerations
 
+enum Moments { SOIR, MINUIT, MATIN };
+
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
 
-enum Types { AMAS_OUVERT, AMAS_GLOBULAIRE, NEBULEUSE_PLANETAIRE,
-			 STARFORMING_NEBULA, GALAXIE_SPIRALE, GALAXIE_ELIPTIQUE,
-			 GALAXIE_IRREGULIERE, GALAXIE_LENTILLE, RESTANT_DE_SUPERNOVA,
-			 ASTERISME = 'A', PATCH_VOIE_LACTEE = 'B', ETOILE_BINAIRE = 'B' };
-
-enum Moments { SOIR, MINUIT, MATIN };
+enum Types 
+{ 
+	AMAS_OUVERT, 
+	AMAS_GLOBULAIRE,
+	NEBULEUSE_PLANETAIRE,
+	STARFORMING_NEBULA, 
+	GALAXIE_SPIRALE,
+	GALAXIE_ELIPTIQUE,
+	GALAXIE_IRREGULIERE,
+	GALAXIE_LENTILLE,
+	RESTANT_DE_SUPERNOVA,
+	ASTERISME = 'A',
+	PATCH_VOIE_LACTEE = 'B',
+	ETOILE_BINAIRE = 'C' 
+};
 
 #pragma endregion
 
 #pragma region Structures
-
-struct AcensionDroite {
-	int heure,
-		minute;
-};
-
-struct Informations {
-	bool			estAffiche = true;
-	int				declinaison = 0;
-	double			magnitude = 0.0;
-	unsigned		nom = 0;
-	string			type = "";
-	AcensionDroite  acensionDroite = { 0, 0 };
-};
-
-struct ListeDesObjetsMessiers {
-	int taille = N_OBJETS_MESSIERS;
-	Informations element[N_OBJETS_MESSIERS];
-};
-
-struct Etoiles {
-	int				declinaison = 0;
-	string			nom = "",
-                    constellation = "";
-	AcensionDroite	acensionDroite = { 0 , 0 };
-};
 
 struct Tableau3Variables {
 
@@ -88,23 +73,15 @@ void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 
 }
 
-void initialiserEstAfficher(ListeDesObjetsMessiers& liste) {
-	for (int i = 0; i < liste.taille; i++)
-		liste.element[i].estAffiche = true;
-}
-
 void afficherMenu() {
-	cout << "Veuiller faire un choix parmis les suivants : " << endl;
-	cout << "1 - Afficher Tout les objets Messiers" << endl;
-	cout << "2 - Afficher Tout les objets Messiers actuellement visible" << endl;
-	cout << "3 - Afficher Tout les objets Messiers de niveau facile" << endl;
-	cout << "4 - Afficher Tout les objets Messiers de niveau facile actuellement visible"
-         << endl;
-	cout << "5 - Afficher les informations d'un objet Messier specifique" << endl;
-	cout << "6 - Afficher le menu" << endl;
-	cout << "0 - Fermer le programme" << endl;
+	cout << "Veuiller faire un choix parmis les suivants : "			<< endl
+		 << "1 - Ajuster les parametres"								<< endl
+		 << "2  Afficher Tout les objets Messiers actuellement visible" << endl
+		 << "3  Afficher les informations d'un objet de Messier"		<< endl
+		 << "0  Fermer le programme"									<< endl;
 }
 
+/*
 void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 
 	system("cls");
@@ -131,7 +108,6 @@ void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 			cout << endl << "Aucun objet Messier n'est visible :(" << endl;
 		cout << "________________________________________________________________________" << endl;
 }
-
 void afficherObjet(ListeDesObjetsMessiers liste) {
 
 	system("cls");
@@ -375,3 +351,4 @@ int main() {
 
 	cout << "Bonne Observations!" << endl;
 }
+*/

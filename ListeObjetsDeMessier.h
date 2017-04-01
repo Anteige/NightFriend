@@ -60,7 +60,7 @@ public:
 	///
 	///\brief  Permet d'obtenir les objets de Messier a partir d'un fichier.
 	///
-	void LireFichier();
+	void lireFichier();
 
 	///
 	///\brief Affiche tous les objets en ordre numerique des ids.
@@ -72,6 +72,7 @@ public:
 private:
 
 	list<ObjetDeMessier*> liste_;
+
 };
 
 #endif // LISTE_OBJETS_DE_MESSIER_INCLUDED

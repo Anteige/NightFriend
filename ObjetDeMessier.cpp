@@ -1,31 +1,34 @@
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 /// \author		Antoine Gaulin
 /// \file		ObjetDeMessier.cpp
 /// \date		26/03/2017
 /// \brief		Implementation de la classe Objet de Messier.
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 #include "ObjetDeMessier.h"
-ObjetDeMessier::ObjetDeMessier (
-	int id = 000,
-	string constellation = "CON",
-	string type = "0",
-	DonneeDouble ascensionDroite = { Donnee(), Donnee() },
-	DonneeDouble declinaison = { Donnee(), Donnee() },
-	Donnee magnitudeApparente = Donnee(),
-	Donnee distance = Donnee(),
-	Donnee diametreApparent = Donnee()
-) :
-	id_(id),
-	constellation_(constellation),
+
+ObjetDeMessier::ObjetDeMessier(const string& nom, 
+							   const string& constellation,
+						       const DonneeDouble& ascensionDroite,
+							   const DonneeDouble& declinaison,
+							   int id,
+							   const string& type,
+							   const Donnee& magnitudeApparente, 
+							   const Donnee& distance, 
+							   const Donnee& diametreApparent):
+	id_(id), 
 	type_(type),
-	ascensionDroite_(ascensionDroite),
-	declinaison_(declinaison),
-	magnitudeApparente_(magnitudeApparente),
+	magnitudeApparente_(magnitudeApparente), 
 	distance_(distance),
 	diametreApparent_(diametreApparent)
-{
+{	
+	//TODO : Remplacer par les mutators d'objet celeste.
+	nom_ = nom;
+	constellation_ = constellation;
+	ascensionDroite_ = ascensionDroite;
+	declinaison_ = declinaison;
 }
+
 
 int ObjetDeMessier::obtenirId() const
 {
