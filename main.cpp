@@ -6,30 +6,28 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include <iomanip>
-#include <string>
-#include <fstream>
 #include <windows.h>
+
+#include "ListeObjetsDeMessier.h"
 
 using namespace std;
 
-static const int	N_OBJETS_MESSIERS = 110,
-					N_DE_MOIS = 12,
-					N_DE_PERIODE = 3,
-					N_MAX_CHAR_TYPE = 20;
-
-#pragma region Enumerations
-
-enum Moments { SOIR, MINUIT, MATIN };
+/*
+static const int N_OBJETS_MESSIERS = 110, N_MAX_CHAR_TYPE = 20;
+*/
 
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
+const int N_DE_MOIS = 12;
 
-enum Types 
-{ 
-	AMAS_OUVERT, 
+enum Periodes { SOIR, MINUIT, MATIN };
+const int N_DE_PERIODE = 3;
+
+enum Types
+{
+	AMAS_OUVERT,
 	AMAS_GLOBULAIRE,
 	NEBULEUSE_PLANETAIRE,
-	STARFORMING_NEBULA, 
+	STARFORMING_NEBULA,
 	GALAXIE_SPIRALE,
 	GALAXIE_ELIPTIQUE,
 	GALAXIE_IRREGULIERE,
@@ -37,51 +35,109 @@ enum Types
 	RESTANT_DE_SUPERNOVA,
 	ASTERISME = 'A',
 	PATCH_VOIE_LACTEE = 'B',
-	ETOILE_BINAIRE = 'C' 
+	ETOILE_BINAIRE = 'C'
 };
 
-#pragma endregion
-
-#pragma region Structures
-
-struct Tableau3Variables {
-
-	int taille1 = N_DE_PERIODE,
-		taille2 = N_DE_MOIS;
-
-	double element[N_DE_PERIODE][N_DE_MOIS];
-};
-
-#pragma endregion
-
-void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
-
-	for (int i = 0; i < passagesAuMeridien.taille1; i++) {
-		passagesAuMeridien.element[SOIR + i][NOV] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.element[SOIR + i][DEC] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.element[SOIR + i][JAN] = 1.5 + 3 * (i + 1);
-		passagesAuMeridien.element[SOIR + i][FEV] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.element[SOIR + i][MAR] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.element[SOIR + i][AVR] = 1.5 + 3 * (i + 3);
-		passagesAuMeridien.element[SOIR + i][MAI] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.element[SOIR + i][JUN] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.element[SOIR + i][JUL] = 1.5 + 3 * (i + 5);
-		passagesAuMeridien.element[SOIR + i][AOU] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.element[SOIR + i][SEP] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.element[SOIR + i][OCT] = 1.5 + 3 * (i + 7);
-	}
-
+///
+///\brief	Initialise l'affichage et mets le texte en rouge fonce.
+///
+void InitialiserAffichage()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 12);
 }
 
-void afficherMenu() {
-	cout << "Veuiller faire un choix parmis les suivants : "			<< endl
-		 << "1 - Ajuster les parametres"								<< endl
-		 << "2  Afficher Tout les objets Messiers actuellement visible" << endl
-		 << "3  Afficher les informations d'un objet de Messier"		<< endl
-		 << "0  Fermer le programme"									<< endl;
+///
+///\brief	Fonction Principale.
+///
+int main()
+{
+
+	// Initialisation de l'affichage.
+	InitialiserAffichage();
+
+	// Initialisation du son.
+
+	// Creation de la liste.
+	ListeObjetsDeMessier listeDesObjetsDeMessiers;
+	listeDesObjetsDeMessiers.lireFichier();
+
+	// Definition des choix du menu principal.
+	enum Choix { PARAMETRES, LISTE, RECHERCHE, QUITTER };
+
+	// Debut du menu principal.
+	while (true) {
+
+		// L'utilisateur entre son choix.
+		int choix;
+		cin >> choix;
+
+		switch (choix) {
+
+		case PARAMETRES:
+			// TODO : Implementer l'ajustement des parametres.
+				// TODO : Implementer l'ajustement de la difficulte.
+				// TODO : Implementer l'ajustement de la periode d'observation.
+			break;
+
+		case LISTE:
+			// TODO : Implementer l'affichage de la liste ajustee au conditions.
+				// TODO : Implementer l'ajustement des criteres d'affichages.
+					// TODO : Implementer l'option par types.
+					// TODO : Implementer l'option par magnitudes.
+					// TODO : Implementer l'option par distance.
+					// TODO : Implementer l'option par diametre apparent.
+			break;
+
+		case RECHERCHE:
+			// TODO : Implementer la recherche d'un objet de Messier en particulier.
+			break;
+
+		case QUITTER:
+			return(0);
+
+		default:
+			cout << "Cette action est invalide" << endl;
+			cin.clear();
+			cin.ignore(80, '\n');
+		}
+
+	}
 }
 
 /*
+struct Tableau3Variables {
+
+int taille1 = N_DE_PERIODE,
+taille2 = N_DE_MOIS;
+
+double element[N_DE_PERIODE][N_DE_MOIS];
+};
+
+void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
+	for (int i = 0; i < passagesAuMeridien.taille1; i++) {
+	passagesAuMeridien.element[SOIR + i][NOV] = 1.5 + 3 * (i + 0);
+	passagesAuMeridien.element[SOIR + i][DEC] = 1.5 + 3 * (i + 0);
+	passagesAuMeridien.element[SOIR + i][JAN] = 1.5 + 3 * (i + 1);
+	passagesAuMeridien.element[SOIR + i][FEV] = 1.5 + 3 * (i + 2);
+	passagesAuMeridien.element[SOIR + i][MAR] = 1.5 + 3 * (i + 2);
+	passagesAuMeridien.element[SOIR + i][AVR] = 1.5 + 3 * (i + 3);
+	passagesAuMeridien.element[SOIR + i][MAI] = 1.5 + 3 * (i + 4);
+	passagesAuMeridien.element[SOIR + i][JUN] = 1.5 + 3 * (i + 4);
+	passagesAuMeridien.element[SOIR + i][JUL] = 1.5 + 3 * (i + 5);
+	passagesAuMeridien.element[SOIR + i][AOU] = 1.5 + 3 * (i + 6);
+	passagesAuMeridien.element[SOIR + i][SEP] = 1.5 + 3 * (i + 6);
+	passagesAuMeridien.element[SOIR + i][OCT] = 1.5 + 3 * (i + 7);
+}
+
+void afficherMenu() {
+	cout << "Veuiller choisir parmis les options suivantes : "		<< endl
+	<< "1  Ajuster les parametres"									<< endl
+	<< "2  Afficher Tout les objets Messiers actuellement visible"	<< endl
+	<< "3  Afficher les informations d'un objet de Messier"			<< endl
+	<< "0  Fermer le programme"										<< endl;
+}
+
 void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 
 	system("cls");
@@ -108,6 +164,7 @@ void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 			cout << endl << "Aucun objet Messier n'est visible :(" << endl;
 		cout << "________________________________________________________________________" << endl;
 }
+
 void afficherObjet(ListeDesObjetsMessiers liste) {
 
 	system("cls");
@@ -274,81 +331,5 @@ void trouverEtoileGuide(ListeDesObjetsMessiers liste, Etoiles& etoileGuide) {
 			}
 		}
 	}
-}
-
-int main() {
-	int choix = 0;
-	int mois = -1;
-	ListeDesObjetsMessiers objetsMessier;
-	Tableau3Variables passagesAuMeridien;
-	Etoiles etoileGuide;
-
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 12);
-
-	lirefichierbinaire(objetsMessier);
-
-	initialiserTableau3Variables(passagesAuMeridien);
-
-	cout << "Bienvenue dans le Companion du ciel 2.6" << endl << endl;
-
-	afficherMenu();
-
-	cout << "							par Antoine Gaulin" << endl << endl;
-	cin >> choix;
-
-	if (cin.fail())
-		choix = -1;
-
-	while (choix != 0) {
-
-		switch (choix) {
-			case 1 :
-				afficherListe("Liste exaustive des objets Messiers", objetsMessier);
-				break;
-
-			case 2 :
-				testVisible(passagesAuMeridien, objetsMessier);
-				trouverEtoileGuide(objetsMessier, etoileGuide);
-				afficherListe("Liste des objets Messiers actuellement visibles", objetsMessier);
-				afficherEtoileGuide(etoileGuide);
-				break;
-
-			case 3 :
-				testFacile(objetsMessier);
-				afficherListe("Liste des objets Messiers faciles", objetsMessier);
-				break;
-
-			case 4 :
-				testFacile(objetsMessier);
-				testVisible(passagesAuMeridien, objetsMessier);
-				trouverEtoileGuide(objetsMessier, etoileGuide);
-				afficherListe("Liste des objets Messiers faciles et visibles", objetsMessier);
-				afficherEtoileGuide(etoileGuide);
-				break;
-
-			case 5 :
-				afficherObjet(objetsMessier);
-				break;
-
-			case 6 :
-				break;
-
-			default :
-				cout << "Cette action est invalide" << endl;
-				cin.clear();
-				cin.ignore(80, '\n');
-		}
-
-		initialiserEstAfficher(objetsMessier);
-		if (cin.fail())
-			choix = -1;
-		else
-			cin >> choix;
-		system("cls");
-		afficherMenu();
-	}
-
-	cout << "Bonne Observations!" << endl;
 }
 */

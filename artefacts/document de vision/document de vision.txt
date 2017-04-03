@@ -8,7 +8,7 @@ quels objets sont observables à un instant donné lors d'une observation au
 télescope.
 
 Description de la solution :
-On veut pouvoir savoir quels objets Messiers sont observables pour un moment
+On veut pouvoir savoir quels objets de Messiers sont observables pour un moment
 donné. Une liste des objets visibles sera afficher en montrant leurs coordonées
 et des informations importantes. La position d'une étoile accessible sera aussi
 disponible pour faciliter le repérage.
