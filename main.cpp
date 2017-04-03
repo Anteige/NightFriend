@@ -48,6 +48,22 @@ void InitialiserAffichage()
 }
 
 ///
+///\brief	Affiche le menu principal dans la console.
+///
+void afficherMenuPrincipal() 
+{
+	// Nettoyer la console.
+	system("cls");
+
+	// Afficher le menu.
+	cout << "Veuiller choisir parmis les options suivantes : "			<< endl
+		 << "0 - Ajuster les parametres du programme."					<< endl
+		 << "1 - Afficher la liste des objets de Messier visibles."		<< endl
+		 << "2 - Rechercher un objet de Messier"						<< endl
+		 << "3 - Fermer le programme"									<< endl;
+}
+
+///
 ///\brief	Fonction Principale.
 ///
 int main()
@@ -57,7 +73,7 @@ int main()
 	InitialiserAffichage();
 
 	// Initialisation du son.
-	// TODO: faire le soundtrack et l'initialiser
+	// TODO: faire le soundtrack et l'initialiser.
 
 	// Creation de la liste.
 	ListeObjetsDeMessier listeDesObjetsDeMessiers;
@@ -67,6 +83,9 @@ int main()
 	enum Choix { PARAMETRES, LISTE, RECHERCHE, QUITTER };
 
 	// Debut du menu principal.
+
+	afficherMenuPrincipal();
+
 	while (true) {
 
 		// L'utilisateur entre son choix.
@@ -129,14 +148,6 @@ void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 	passagesAuMeridien.element[SOIR + i][AOU] = 1.5 + 3 * (i + 6);
 	passagesAuMeridien.element[SOIR + i][SEP] = 1.5 + 3 * (i + 6);
 	passagesAuMeridien.element[SOIR + i][OCT] = 1.5 + 3 * (i + 7);
-}
-
-void afficherMenu() {
-	cout << "Veuiller choisir parmis les options suivantes : "		<< endl
-	<< "1  Ajuster les parametres"									<< endl
-	<< "2  Afficher Tout les objets Messiers actuellement visible"	<< endl
-	<< "3  Afficher les informations d'un objet de Messier"			<< endl
-	<< "0  Fermer le programme"										<< endl;
 }
 
 void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
