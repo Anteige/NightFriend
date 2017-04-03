@@ -57,6 +57,7 @@ int main()
 	InitialiserAffichage();
 
 	// Initialisation du son.
+	// TODO: faire le soundtrack et l'initialiser
 
 	// Creation de la liste.
 	ListeObjetsDeMessier listeDesObjetsDeMessiers;
