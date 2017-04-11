@@ -10,11 +10,9 @@
 
 #include "ListeObjetsDeMessier.h"
 
+
 using namespace std;
 
-/*
-static const int N_OBJETS_MESSIERS = 110, N_MAX_CHAR_TYPE = 20;
-*/
 
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
 const int N_DE_MOIS = 12;
@@ -38,6 +36,7 @@ enum Types
 	ETOILE_BINAIRE = 'C'
 };
 
+
 ///
 ///\brief	Initialise l'affichage et mets le texte en rouge fonce.
 ///
@@ -46,6 +45,7 @@ void InitialiserAffichage()
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 12);
 }
+
 
 ///
 ///\brief	Affiche le menu principal dans la console.
@@ -61,55 +61,62 @@ void afficherMenuPrincipal()
 		 << "3 - Fermer le programme"									<< endl;
 }
 
+
 ///
-///\brief	Fonction Principale.
+/// \brief Fonction principale.
 ///
 int main()
 {
+	// Initialisation du GUI.
 	InitialiserAffichage();
+	// TODO: InitialiserSon();
 
-	// Initialisation du son.
-	// TODO: faire le soundtrack et l'initialiser.
-
+	// Initialisation de la liste des objets de Messier.
 	ListeObjetsDeMessier listeDesObjetsDeMessiers;
 	listeDesObjetsDeMessiers.lireFichier();
 
+	// Definition des choix du menu.
 	enum Choix { PARAMETRES, LISTE, RECHERCHE, QUITTER };
 
+	// Boucle du menu principale.
 	while (true) {
 
+		// Afficher le menu.
 		afficherMenuPrincipal();
 
+		// L'utilisateur entre un choix.
 		int choix;
 		cin >> choix;
 
 		switch (choix) {
 
-		case PARAMETRES:
-			// TODO : Implementer l'ajustement des parametres.
-				// TODO : Implementer l'ajustement de la difficulte.
-				// TODO : Implementer l'ajustement de la periode d'observation.
-			break;
+			case PARAMETRES:
+				// TODO : Implementer l'ajustement des parametres.
+					// TODO : Implementer l'ajustement de la difficulte.
+					// TODO : Implementer l'ajustement de la periode d'observation.
+				break;
 
-		case LISTE:
-			// TODO : Implementer l'affichage de la liste ajustee au conditions.
-				// TODO : Implementer l'ajustement des criteres d'affichages.
-					// TODO : Implementer l'option par types.
-					// TODO : Implementer l'option par magnitudes.
-					// TODO : Implementer l'option par distance.
-					// TODO : Implementer l'option par diametre apparent.
-			break;
+			case LISTE:
+				// TODO : Implementer l'affichage de la liste ajustee au conditions.
+					// TODO : Implementer l'ajustement des criteres d'affichages.
+						// TODO : Implementer l'option par types.
+						// TODO : Implementer l'option par magnitudes.
+						// TODO : Implementer l'option par distance.
+						// TODO : Implementer l'option par diametre apparent.
+				break;
 
-		case RECHERCHE:
-			// TODO : Implementer la recherche d'un objet de Messier en particulier.
-			break;
+			case RECHERCHE:
+				// TODO : Implementer la recherche d'un objet de Messier en particulier.
+				break;
 
-		case QUITTER:
-			return(0);
+			case QUITTER:
+				return(0);
 
-		default:
-			cin.clear();
-			cin.ignore(80, '\n');
+			default:
+				// Nettoyer cin.
+				cin.clear();
+				cin.ignore(80, '\n');
+				break;
 		}
 
 	}
