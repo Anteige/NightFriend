@@ -171,7 +171,7 @@ Donnee Donnee::operator^(const double& nombre) const
 
 ostream& operator<<(ostream& out, const Donnee& donnee)
 {
-	out << donnee.nom_		<< ' '
+	out << donnee.nom_		<< ' ' 
 		<< donnee.valeur_	<< ' '
 		<< donnee.unite_	<< ' '
 		<< endl;
