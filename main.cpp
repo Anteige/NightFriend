@@ -76,9 +76,9 @@ int main()
 
 	enum Choix { PARAMETRES, LISTE, RECHERCHE, QUITTER };
 
-	afficherMenuPrincipal();
-
 	while (true) {
+
+		afficherMenuPrincipal();
 
 		int choix;
 		cin >> choix;
@@ -108,7 +108,6 @@ int main()
 			return(0);
 
 		default:
-			cout << "Cette action est invalide" << endl;
 			cin.clear();
 			cin.ignore(80, '\n');
 		}
