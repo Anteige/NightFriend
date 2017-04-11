@@ -29,7 +29,7 @@ public:
 	///\param  distance				La distance de l'objet.
 	///\param  diametreApparent		Le diametre apparent de l'objet.
 	///
-	ObjetDeMessier(const string& nom,
+	ObjetDeMessier(const string& nom, 
 				   const string& constellation,
 				   const DonneeDouble& ascensionDroite,
 				   const DonneeDouble& declinaison,

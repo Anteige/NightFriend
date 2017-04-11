@@ -55,7 +55,7 @@ public:
 	///\param  id	L'id de l'objet a trouver.
 	///\return Un pointeur vers l'objet, nullptr si l'objet n'existe pas.
 	///
-	ObjetDeMessier* trouver(int id) const;
+	//ObjetDeMessier* trouver(int id) const;
 
 	///
 	///\brief  Permet d'obtenir les objets de Messier a partir d'un fichier.

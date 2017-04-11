@@ -7,41 +7,32 @@
 
 #include "ObjetCeleste.h"
 
-ObjetCeleste::ObjetCeleste() :
-	nom_("Objet sans nom"), 
-	constellation_("BTW"), 
-	ascensionDroite_({Donnee(), Donnee()}),
-	declinaison_({ Donnee(), Donnee() })
+ObjetCeleste::ObjetCeleste(const string& nom, 
+						   const string& constellation, 
+						   const DonneeDouble& ascensionDroite,
+						   const DonneeDouble& declinaison)
+	: nom_(nom), constellation_(constellation), 
+				 ascensionDroite_(ascensionDroite),
+				 declinaison_(declinaison)
 {
 }
 
-ObjetCeleste::ObjetCeleste(const string& nom,
-						   const string& constellation, 
-						   const DonneeDouble& ascensionDroite, 
-						   const DonneeDouble& declinaison)
+void ObjetCeleste::modifierNom(const string& nom)
 {
 	nom_ = nom;
+}
+
+void ObjetCeleste::modifierConstellation(const string& constellation)
+{
 	constellation_ = constellation;
+}
+
+void ObjetCeleste::modifierAscensionDroite(const DonneeDouble& ascensionDroite)
+{
 	ascensionDroite_ = ascensionDroite;
+}
+
+void ObjetCeleste::modifierDeclinaison(const DonneeDouble& declinaison)
+{
 	declinaison_ = declinaison;
-}
-
-string ObjetCeleste::obtenirNom() const
-{
-	return nom_;
-}
-
-string ObjetCeleste::obtenirConstellation() const
-{
-	return constellation_;
-}
-
-DonneeDouble ObjetCeleste::obtenirAscensionDroite() const
-{
-	return ascensionDroite_;
-}
-
-DonneeDouble ObjetCeleste::obtenirDeclinaison() const
-{
-	return declinaison_;
 }

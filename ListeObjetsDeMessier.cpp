@@ -14,10 +14,9 @@ ListeObjetsDeMessier::ListeObjetsDeMessier()
 
 ListeObjetsDeMessier::~ListeObjetsDeMessier()
 {
-	for_each( liste_.begin(), 
-			  liste_.end(), 
-			  [](ObjetDeMessier* objet){delete objet;}
-			);
+	for_each(liste_.begin(), 
+			 liste_.end(), 
+			 [](ObjetDeMessier* objet){delete objet;});
 
 	liste_.clear();
 }
@@ -44,7 +43,7 @@ void ListeObjetsDeMessier::inserer(const string& nom,
 	liste_.push_back(nouvelObjet);
 }
 
-ObjetDeMessier* ListeObjetsDeMessier::trouver(int id) const
+/*ObjetDeMessier* ListeObjetsDeMessier::trouver(int id) const
 {
 	auto it = find_if(liste_.begin(), 
 					  liste_.end(), 
@@ -56,7 +55,7 @@ ObjetDeMessier* ListeObjetsDeMessier::trouver(int id) const
 		return *it;
 	else
 		return nullptr;
-}
+}*/
 
 void ListeObjetsDeMessier::lireFichier()
 {

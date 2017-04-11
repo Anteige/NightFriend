@@ -18,11 +18,6 @@ class ObjetCeleste
 
 public:
 
-	///
-	///\brief  Constructeur par default.
-	///
-	ObjetCeleste();
-
     ///
 	///\brief  Constructeur par parametres.
 	///\param  nom					Le nom de l'objet.
@@ -30,33 +25,34 @@ public:
 	///\param  ascensionDroite		Les coordonnees de l'ascension droite.
 	///\param  declinaison			Les coordonnees de la declinaison.
 	///
-	ObjetCeleste(const string& nom, const string& constellation, 
-									const DonneeDouble& ascensionDroite,
-									const DonneeDouble& declinaison);
+	ObjetCeleste(const string& nom = "Objet sans nom", 
+				 const string& constellation = "BTW",
+				 const DonneeDouble& ascensionDroite = { Donnee(), Donnee() },
+				 const DonneeDouble& declinaison = { Donnee(), Donnee() } );
 
 	///
 	///\brief  Mutator de nom_.
-	///\return string	le nom de l'objet celeste.
+	///\param string	le nouveau nom de l'objet celeste.
 	///
-	string obtenirNom() const;
+	void modifierNom(const string& nom);
 
 	///
 	///\brief  Mutator de constellation_.
-	///\return string	la constellation de l'objet celeste.
+	///\return string	la nouvelle constellation de l'objet celeste.
 	///
-	string obtenirConstellation() const;
+	void modifierConstellation(const string& constellation);
 
 	///
 	///\brief  Mutator de AscensionDroite_.
 	///\return string	l'ascension droite de l'objet celeste.
 	///
-	DonneeDouble obtenirAscensionDroite() const;
+	void modifierAscensionDroite(const DonneeDouble& ascensionDroite);
 
 	///
 	///\brief  Mutator de Declinaison_.
 	///\return string	la declinaison de l'objet celeste.
 	///
-	DonneeDouble obtenirDeclinaison() const;
+	void modifierDeclinaison(const DonneeDouble& declinaison);
 
 private:
 
