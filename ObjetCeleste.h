@@ -30,14 +30,35 @@ public:
 	///\param  ascensionDroite		Les coordonnees de l'ascension droite.
 	///\param  declinaison			Les coordonnees de la declinaison.
 	///
-	ObjetCeleste(const string& nom,
-				 const string& constellation,
-				 const DonneeDouble& ascensionDroite,
-				 const DonneeDouble& declinaison);
+	ObjetCeleste(const string& nom, const string& constellation, 
+									const DonneeDouble& ascensionDroite,
+									const DonneeDouble& declinaison);
 
-	//TODO : Ajouter des Mutators pour tout les attribus.
+	///
+	///\brief  Mutator de nom_.
+	///\return string	le nom de l'objet celeste.
+	///
+	string obtenirNom() const;
 
-protected:
+	///
+	///\brief  Mutator de constellation_.
+	///\return string	la constellation de l'objet celeste.
+	///
+	string obtenirConstellation() const;
+
+	///
+	///\brief  Mutator de AscensionDroite_.
+	///\return string	l'ascension droite de l'objet celeste.
+	///
+	DonneeDouble obtenirAscensionDroite() const;
+
+	///
+	///\brief  Mutator de Declinaison_.
+	///\return string	la declinaison de l'objet celeste.
+	///
+	DonneeDouble obtenirDeclinaison() const;
+
+private:
 
 	string nom_;
 	string constellation_;

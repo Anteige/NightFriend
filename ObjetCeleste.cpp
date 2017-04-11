@@ -25,3 +25,23 @@ ObjetCeleste::ObjetCeleste(const string& nom,
 	ascensionDroite_ = ascensionDroite;
 	declinaison_ = declinaison;
 }
+
+string ObjetCeleste::obtenirNom() const
+{
+	return nom_;
+}
+
+string ObjetCeleste::obtenirConstellation() const
+{
+	return constellation_;
+}
+
+DonneeDouble ObjetCeleste::obtenirAscensionDroite() const
+{
+	return ascensionDroite_;
+}
+
+DonneeDouble ObjetCeleste::obtenirDeclinaison() const
+{
+	return declinaison_;
+}
