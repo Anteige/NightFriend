@@ -22,27 +22,25 @@ ListeObjetsDeMessier::~ListeObjetsDeMessier()
 	liste_.clear();
 }
 
-void ListeObjetsDeMessier::inserer( 
-	int id,
-	string constellation,
-	string type,
-	DonneeDouble ascensionDroite,
-	DonneeDouble declinaison,
-	Donnee magnitudeApparente,
-	Donnee distance,
-	Donnee diametreApparent
-)
-
+void ListeObjetsDeMessier::inserer(const string& nom,
+								   const string& constellation, 
+								   const string& type, 
+								   const DonneeDouble& ascensionDroite, 
+								   const DonneeDouble& declinaison,
+								   int id,
+								   const Donnee& magnitudeApparente, 
+								   const Donnee& distance, 
+								   const Donnee& diametreApparent)
 {
-	ObjetDeMessier* nouvelObjet = new ObjetDeMessier(id, 
-													 constellation, 
-													 type, 
+	ObjetDeMessier* nouvelObjet = new ObjetDeMessier(nom,
+													 constellation,
 													 ascensionDroite,
-													 declinaison, 
+													 declinaison,
+													 id,
+													 type,
 													 magnitudeApparente,
 													 distance,
-													 diametreApparent
-													);
+													 diametreApparent);
 	liste_.push_back(nouvelObjet);
 }
 

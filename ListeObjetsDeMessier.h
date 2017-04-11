@@ -40,15 +40,15 @@ public:
 	///\param  distance				La distance de l'objet.
 	///\param  diametreApparent		Le diametre apparent de l'objet.
 	///
-	void inserer( int id,
-				 string constellation,
-				 string type,
-				 DonneeDouble ascensionDroite,
-				 DonneeDouble declinaison,
-				 Donnee magnitudeApparente,
-				 Donnee distance,
-				 Donnee diametreApparent
-				);
+	void inserer(const string& nom,
+				 const string& constellation,
+				 const string& type,
+				 const DonneeDouble& ascensionDroite,
+				 const DonneeDouble& declinaison,
+				 int id,
+				 const Donnee& magnitudeApparente,
+				 const Donnee& distance,
+				 const Donnee& diametreApparent);
 
 	///
 	///\brief  Trouve un objet ayant l'id demande.

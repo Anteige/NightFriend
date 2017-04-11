@@ -52,10 +52,8 @@ void InitialiserAffichage()
 ///
 void afficherMenuPrincipal() 
 {
-	// Nettoyer la console.
 	system("cls");
 
-	// Afficher le menu.
 	cout << "Veuiller choisir parmis les options suivantes : "			<< endl
 		 << "0 - Ajuster les parametres du programme."					<< endl
 		 << "1 - Afficher la liste des objets de Messier visibles."		<< endl
@@ -68,27 +66,20 @@ void afficherMenuPrincipal()
 ///
 int main()
 {
-
-	// Initialisation de l'affichage.
 	InitialiserAffichage();
 
 	// Initialisation du son.
 	// TODO: faire le soundtrack et l'initialiser.
 
-	// Creation de la liste.
 	ListeObjetsDeMessier listeDesObjetsDeMessiers;
 	listeDesObjetsDeMessiers.lireFichier();
 
-	// Definition des choix du menu principal.
 	enum Choix { PARAMETRES, LISTE, RECHERCHE, QUITTER };
-
-	// Debut du menu principal.
 
 	afficherMenuPrincipal();
 
 	while (true) {
 
-		// L'utilisateur entre son choix.
 		int choix;
 		cin >> choix;
 
