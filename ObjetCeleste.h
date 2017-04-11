@@ -30,30 +30,6 @@ public:
 				 const DonneeDouble& ascensionDroite = { Donnee(), Donnee() },
 				 const DonneeDouble& declinaison = { Donnee(), Donnee() } );
 
-	///
-	///\brief  Mutator de nom_.
-	///\param string	le nouveau nom de l'objet celeste.
-	///
-	void modifierNom(const string& nom);
-
-	///
-	///\brief  Mutator de constellation_.
-	///\return string	la nouvelle constellation de l'objet celeste.
-	///
-	void modifierConstellation(const string& constellation);
-
-	///
-	///\brief  Mutator de AscensionDroite_.
-	///\return string	l'ascension droite de l'objet celeste.
-	///
-	void modifierAscensionDroite(const DonneeDouble& ascensionDroite);
-
-	///
-	///\brief  Mutator de Declinaison_.
-	///\return string	la declinaison de l'objet celeste.
-	///
-	void modifierDeclinaison(const DonneeDouble& declinaison);
-
 private:
 
 	string nom_;
