@@ -320,6 +320,4 @@ int main() {
 			cin >> choix;
 		afficherMenu();
 	}
-
-	cout << "Bonne Observations!" << endl;
 }
