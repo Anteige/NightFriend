@@ -13,24 +13,21 @@ struct RightAscension {
 	int hour, minute;
 };
 
-struct Object {
-	bool isVisible = true;
+struct Coordinate {
 	int declination = 0;
-	double magnitude = 0.0;
-	unsigned name = 0;
-	string type = "";
 	RightAscension rightAscension = {0, 0};
 };
 
-struct Objects {
-	int taille = 110;
-	Object element[110];
+struct Object : Coordinate {
+	bool isVisible = true;
+	double magnitude = 0.0;
+	unsigned name = 0;
+	string type = "";
+
 };
 
-struct Star {
-	int	declination = 0;
+struct Star : Coordinate {
 	string name = "", constellation = "";
-	RightAscension	rightAscension = {0, 0};
 };
 
 struct Tableau3Variables {
@@ -38,24 +35,19 @@ struct Tableau3Variables {
 	double element[3][12];
 };
 
-void lirefichierbinaire(Objects& objetsMessier) {
-
-	char chaine[20];
-
-	ifstream fichierBinaire("Database", ios::binary);
-
-	fichierBinaire.seekg(0, ios::beg);
-
-	for (int i = 0; i < objetsMessier.taille; i++) {
-		fichierBinaire.read((char*)&objetsMessier.element[i].name, sizeof(int));
-		fichierBinaire.read((char*)&chaine, sizeof(chaine));
-		objetsMessier.element[i].type = chaine;
-		fichierBinaire.read((char*)&objetsMessier.element[i].magnitude, sizeof(double));
-		fichierBinaire.read((char*)&objetsMessier.element[i].declination, sizeof(int));
-		fichierBinaire.read((char*)&objetsMessier.element[i].rightAscension.hour, sizeof(int));
-		fichierBinaire.read((char*)&objetsMessier.element[i].rightAscension.minute, sizeof(int));
+void readObjects(Object* object) {
+	ifstream file("./data/objects", ios::binary);
+	file.seekg(0, ios::beg);
+	for (int i = 0; i < 110; ++i) {
+		file.read((char*)&object[i].name, sizeof(int));
+		char chaine[20];
+		file.read((char*)&chaine, sizeof(chaine));
+		object[i].type = chaine;
+		file.read((char*)&object[i].magnitude, sizeof(double));
+		file.read((char*)&object[i].declination, sizeof(int));
+		file.read((char*)&object[i].rightAscension.hour, sizeof(int));
+		file.read((char*)&object[i].rightAscension.minute, sizeof(int));
 	}
-
 }
 
 void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
@@ -75,25 +67,25 @@ void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 	}
 }
 
-void afficherListe(Objects& liste) {
-	unsigned compteur = 0;
+void afficherListe(Object* liste) {
+	unsigned counter = 0;
 
 	cout << "~ "<< "Liste des objets Messiers faciles et visibles" << " ~" << endl;
 	cout << "________________________________________________________________________"  << endl;
 
-	for (int i = 0; i < liste.taille; i++) {
-		if (liste.element[i].isVisible) {
-			cout << ' ' << 'M' << liste.element[i].name << '\t'
-				<< "Type: " << left << setw(17) << setfill(' ') << liste.element[i].type << '\t'
-				<< "Magnitude: " << liste.element[i].magnitude << '\t'
-				<< "AD: " << right << setw(2) << setfill('0') << liste.element[i].rightAscension.hour << ':' << right << setw(2) << setfill('0') << liste.element[i].rightAscension.minute << '\t'
-				<< "Dec: " << setw(3) << setfill(' ') << liste.element[i].declination << endl;
-			compteur++;
+	for (int i = 0; i < 110; i++) {
+		if (liste[i].isVisible) {
+			cout << ' ' << 'M' << liste[i].name << '\t'
+				<< "Type: " << left << setw(17) << setfill(' ') << liste[i].type << '\t'
+				<< "Magnitude: " << liste[i].magnitude << '\t'
+				<< "AD: " << right << setw(2) << setfill('0') << liste[i].rightAscension.hour << ':' << right << setw(2) << setfill('0') << liste[i].rightAscension.minute << '\t'
+				<< "Dec: " << setw(3) << setfill(' ') << liste[i].declination << endl;
+			++counter;
 		}
 	}
 
-		if (compteur != 0)
-			cout << endl << "total: " << compteur << endl;
+		if (counter != 0)
+			cout << endl << "total: " << counter << endl;
 		else
 			cout << endl << "Aucun objet Messier n'est visible :(" << endl;
 		cout << "________________________________________________________________________" << endl;
@@ -108,8 +100,7 @@ void afficheretoileGuide(Star etoile) {
 	}
 }
 
-void testVisible(const Tableau3Variables& passagesAuMeridien, Objects& liste) {
-
+void testVisible(const Tableau3Variables& passagesAuMeridien, Object* liste) {
 	time_t now = time(0);
    	struct tm * date_time = localtime(&now);
 	int month = date_time->tm_mon, hour = date_time->tm_hour;
@@ -126,17 +117,17 @@ void testVisible(const Tableau3Variables& passagesAuMeridien, Objects& liste) {
 	acensionsDroiteMin.hour = passagesAuMeridien.element[period][month] - 1.5;
 	acensionsDroiteMax.hour = passagesAuMeridien.element[period][month] + 1.5;
 
-	for (int i = 0; i < liste.taille; ++i) {
-		bool EstDansLaPlageHoraire = (acensionsDroiteMin.hour <= liste.element[i].rightAscension.hour) && (liste.element[i].rightAscension.hour <= acensionsDroiteMax.hour);
-		if (!EstDansLaPlageHoraire || liste.element[i].magnitude >= 8)
-			liste.element[i].isVisible = false;
+	for (int i = 0; i < 110; ++i) {
+		bool EstDansLaPlageHoraire = (acensionsDroiteMin.hour <= liste[i].rightAscension.hour) && (liste[i].rightAscension.hour <= acensionsDroiteMax.hour);
+		if (!EstDansLaPlageHoraire || liste[i].magnitude >= 8)
+			liste[i].isVisible = false;
 	}
 }
 
-void trouveretoileGuide(Objects liste, Star& etoileGuide) {
-	for (int i = 0; i < liste.taille; ++i) {
-		if (liste.element[i].isVisible) {
-			if (0 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 3) {
+void trouveretoileGuide(Object* liste, Star& etoileGuide) {
+	for (int i = 0; i < 110; ++i) {
+		if (liste[i].isVisible) {
+			if (0 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 3) {
 				etoileGuide.name = "Mirach";
 				etoileGuide.constellation = "Andromeda";
 				etoileGuide.declination = 35;
@@ -144,7 +135,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 9;
 				break;
 			}
-			else if (3 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 6) {
+			else if (3 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 6) {
 				etoileGuide.name = "Aldebaran";
 				etoileGuide.constellation = "Taurus";
 				etoileGuide.declination = 16;
@@ -152,7 +143,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 35;
 				break;
 			}
-			else if (6 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 9) {
+			else if (6 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 9) {
 				etoileGuide.name = "Pollux";
 				etoileGuide.constellation = "Gemini";
 				etoileGuide.declination = 28;
@@ -160,7 +151,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 45;
 				break;
 			}
-			else if (9 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 12) {
+			else if (9 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 12) {
 				etoileGuide.name = "Algieba";
 				etoileGuide.constellation = "Leo";
 				etoileGuide.declination = 19;
@@ -168,7 +159,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 19;
 				break;
 			}
-			else if (12 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 15) {
+			else if (12 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 15) {
 				etoileGuide.name = "Alkaid";
 				etoileGuide.constellation = "Ursa Major";
 				etoileGuide.declination = 49;
@@ -176,7 +167,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 47;
 				break;
 			}
-			else if (15 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 18) {
+			else if (15 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 18) {
 				etoileGuide.name = "Kornephoros";
 				etoileGuide.constellation = "Hercules";
 				etoileGuide.declination = 21;
@@ -184,7 +175,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 30;
 				break;
 			}
-			else if (18 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 21) {
+			else if (18 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 21) {
 				etoileGuide.name = "Albireo";
 				etoileGuide.constellation = "Cygnus";
 				etoileGuide.declination = 27;
@@ -192,7 +183,7 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 				etoileGuide.rightAscension.minute = 30;
 				break;
 			}
-			else if (21 <= liste.element[i].rightAscension.hour && liste.element[i].rightAscension.hour < 24) {
+			else if (21 <= liste[i].rightAscension.hour && liste[i].rightAscension.hour < 24) {
 				etoileGuide.name = "Matar";
 				etoileGuide.constellation = "Pegasus";
 				etoileGuide.declination = 30;
@@ -205,8 +196,8 @@ void trouveretoileGuide(Objects liste, Star& etoileGuide) {
 }
 
 int main() {
-	Objects objects;
-	lirefichierbinaire(objects);
+	Object objects[110];
+	readObjects(objects);
 	Tableau3Variables passagesAuMeridien;
 	initialiserTableau3Variables(passagesAuMeridien);
 	testVisible(passagesAuMeridien, objects);
