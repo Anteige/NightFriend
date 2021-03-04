@@ -31,7 +31,7 @@ struct Star : Coordinate {
 	string name = "", constellation = "";
 };
 
-struct Tableau3Variables {
+struct Matrix {
 	double element[3][12];
 };
 
@@ -50,24 +50,24 @@ void readObjects(Object* objects) {
 	}
 }
 
-void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
+void constructMatrix(Matrix& meridian) {
 	for (int i = 0; i < 3; ++i) {
-		passagesAuMeridien.element[DUSK + i][NOV] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.element[DUSK + i][DEC] = 1.5 + 3 * (i + 0);
-		passagesAuMeridien.element[DUSK + i][JAN] = 1.5 + 3 * (i + 1);
-		passagesAuMeridien.element[DUSK + i][FEV] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.element[DUSK + i][MAR] = 1.5 + 3 * (i + 2);
-		passagesAuMeridien.element[DUSK + i][AVR] = 1.5 + 3 * (i + 3);
-		passagesAuMeridien.element[DUSK + i][MAY] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.element[DUSK + i][JUN] = 1.5 + 3 * (i + 4);
-		passagesAuMeridien.element[DUSK + i][JUL] = 1.5 + 3 * (i + 5);
-		passagesAuMeridien.element[DUSK + i][AUG] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.element[DUSK + i][SEP] = 1.5 + 3 * (i + 6);
-		passagesAuMeridien.element[DUSK + i][OCT] = 1.5 + 3 * (i + 7);
+		meridian.element[DUSK + i][NOV] = 1.5 + 3 * (i + 0);
+		meridian.element[DUSK + i][DEC] = 1.5 + 3 * (i + 0);
+		meridian.element[DUSK + i][JAN] = 1.5 + 3 * (i + 1);
+		meridian.element[DUSK + i][FEV] = 1.5 + 3 * (i + 2);
+		meridian.element[DUSK + i][MAR] = 1.5 + 3 * (i + 2);
+		meridian.element[DUSK + i][AVR] = 1.5 + 3 * (i + 3);
+		meridian.element[DUSK + i][MAY] = 1.5 + 3 * (i + 4);
+		meridian.element[DUSK + i][JUN] = 1.5 + 3 * (i + 4);
+		meridian.element[DUSK + i][JUL] = 1.5 + 3 * (i + 5);
+		meridian.element[DUSK + i][AUG] = 1.5 + 3 * (i + 6);
+		meridian.element[DUSK + i][SEP] = 1.5 + 3 * (i + 6);
+		meridian.element[DUSK + i][OCT] = 1.5 + 3 * (i + 7);
 	}
 }
 
-void checkVisibility(const Tableau3Variables& passagesAuMeridien, Object* objects) {
+void checkVisibility(const Matrix& meridian, Object* objects) {
 	time_t now = time(0);
    	struct tm * date_time = localtime(&now);
 	int month = date_time->tm_mon, hour = date_time->tm_hour;
@@ -81,8 +81,8 @@ void checkVisibility(const Tableau3Variables& passagesAuMeridien, Object* object
 		period = MORM;
 
 	RightAscension raMin, raMax;
-	raMin.hour = passagesAuMeridien.element[period][month] - 1.5;
-	raMax.hour = passagesAuMeridien.element[period][month] + 1.5;
+	raMin.hour = meridian.element[period][month] - 1.5;
+	raMax.hour = meridian.element[period][month] + 1.5;
 
 	for (int i = 0; i < N_OBJECTS; ++i) {
 		bool isVisible = (raMin.hour <= objects[i].rightAscension.hour) && (objects[i].rightAscension.hour <= raMax.hour);
@@ -91,75 +91,87 @@ void checkVisibility(const Tableau3Variables& passagesAuMeridien, Object* object
 	}
 }
 
-void trouveretoileGuide(Object* objects, Star& etoileGuide) {
+void showStar(Star etoile) {
+	if (etoile.name != "")
+		cout << endl << "Pour le calibrage, utilisez " << etoile.name <<
+		" dans la constellation " << etoile.constellation << "." << endl
+		<< "AD: " << right << setw(2) << setfill('0') <<
+		etoile.rightAscension.hour << ':' << right << setw(2) << setfill('0')
+		<< etoile.rightAscension.minute << endl << "Dec: " << 
+		etoile.declination << endl << endl;
+}
+
+void locateStar(Object* objects) {
+	Star star;
 	for (int i = 0; i < N_OBJECTS; ++i) {
 		if (objects[i].isVisible) {
 			if (0 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 3) {
-				etoileGuide.name = "Mirach";
-				etoileGuide.constellation = "Andromeda";
-				etoileGuide.declination = 35;
-				etoileGuide.rightAscension.hour = 1;
-				etoileGuide.rightAscension.minute = 9;
+				star.name = "Mirach";
+				star.constellation = "Andromeda";
+				star.declination = 35;
+				star.rightAscension.hour = 1;
+				star.rightAscension.minute = 9;
 				break;
 			}
 			else if (3 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 6) {
-				etoileGuide.name = "Aldebaran";
-				etoileGuide.constellation = "Taurus";
-				etoileGuide.declination = 16;
-				etoileGuide.rightAscension.hour = 4;
-				etoileGuide.rightAscension.minute = 35;
+				star.name = "Aldebaran";
+				star.constellation = "Taurus";
+				star.declination = 16;
+				star.rightAscension.hour = 4;
+				star.rightAscension.minute = 35;
 				break;
 			}
 			else if (6 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 9) {
-				etoileGuide.name = "Pollux";
-				etoileGuide.constellation = "Gemini";
-				etoileGuide.declination = 28;
-				etoileGuide.rightAscension.hour = 7;
-				etoileGuide.rightAscension.minute = 45;
+				star.name = "Pollux";
+				star.constellation = "Gemini";
+				star.declination = 28;
+				star.rightAscension.hour = 7;
+				star.rightAscension.minute = 45;
 				break;
 			}
 			else if (9 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 12) {
-				etoileGuide.name = "Algieba";
-				etoileGuide.constellation = "Leo";
-				etoileGuide.declination = 19;
-				etoileGuide.rightAscension.hour = 10;
-				etoileGuide.rightAscension.minute = 19;
+				star.name = "Algieba";
+				star.constellation = "Leo";
+				star.declination = 19;
+				star.rightAscension.hour = 10;
+				star.rightAscension.minute = 19;
 				break;
 			}
 			else if (12 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 15) {
-				etoileGuide.name = "Alkaid";
-				etoileGuide.constellation = "Ursa Major";
-				etoileGuide.declination = 49;
-				etoileGuide.rightAscension.hour = 13;
-				etoileGuide.rightAscension.minute = 47;
+				star.name = "Alkaid";
+				star.constellation = "Ursa Major";
+				star.declination = 49;
+				star.rightAscension.hour = 13;
+				star.rightAscension.minute = 47;
 				break;
 			}
 			else if (15 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 18) {
-				etoileGuide.name = "Kornephoros";
-				etoileGuide.constellation = "Hercules";
-				etoileGuide.declination = 21;
-				etoileGuide.rightAscension.hour = 16;
-				etoileGuide.rightAscension.minute = 30;
+				star.name = "Kornephoros";
+				star.constellation = "Hercules";
+				star.declination = 21;
+				star.rightAscension.hour = 16;
+				star.rightAscension.minute = 30;
 				break;
 			}
 			else if (18 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 21) {
-				etoileGuide.name = "Albireo";
-				etoileGuide.constellation = "Cygnus";
-				etoileGuide.declination = 27;
-				etoileGuide.rightAscension.hour = 19;
-				etoileGuide.rightAscension.minute = 30;
+				star.name = "Albireo";
+				star.constellation = "Cygnus";
+				star.declination = 27;
+				star.rightAscension.hour = 19;
+				star.rightAscension.minute = 30;
 				break;
 			}
 			else if (21 <= objects[i].rightAscension.hour && objects[i].rightAscension.hour < 24) {
-				etoileGuide.name = "Matar";
-				etoileGuide.constellation = "Pegasus";
-				etoileGuide.declination = 30;
-				etoileGuide.rightAscension.hour = 22;
-				etoileGuide.rightAscension.minute = 43;
+				star.name = "Matar";
+				star.constellation = "Pegasus";
+				star.declination = 30;
+				star.rightAscension.hour = 22;
+				star.rightAscension.minute = 43;
 				break;
 			}
 		}
 	}
+	showStar(star);
 }
 
 void showResults(Object* objects) {
@@ -182,24 +194,12 @@ void showResults(Object* objects) {
 		cout << endl << "Aucun objet Messier n'est visible :(" << endl;
 }
 
-void showStar(Star etoile) {
-	if (etoile.name != "")
-		cout << endl << "Pour le calibrage, utilisez " << etoile.name <<
-		" dans la constellation " << etoile.constellation << "." << endl
-		<< "AD: " << right << setw(2) << setfill('0') <<
-		etoile.rightAscension.hour << ':' << right << setw(2) << setfill('0')
-		<< etoile.rightAscension.minute << endl << "Dec: " << 
-		etoile.declination << endl;
-}
-
 int main() {
 	Object objects[N_OBJECTS];
 	readObjects(objects);
-	Tableau3Variables passagesAuMeridien;
-	initialiserTableau3Variables(passagesAuMeridien);
-	checkVisibility(passagesAuMeridien, objects);
-	Star star;
-	trouveretoileGuide(objects, star);
+	Matrix meridian;
+	constructMatrix(meridian);
+	checkVisibility(meridian, objects);
+	locateStar(objects);
 	showResults(objects);
-	showStar(star);
 }
