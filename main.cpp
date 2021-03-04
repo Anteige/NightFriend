@@ -93,10 +93,8 @@ void initialiserEstAfficher(ListeDesObjetsMessiers& liste) {
 void afficherMenu() {
 	cout << "Veuiller faire un choix parmis les suivants : " << endl;
 	cout << "1 - Afficher Tout les objets Messiers actuellement visible" << endl;
-	cout << "2 - Afficher Tout les objets Messiers de niveau facile" << endl;
-	cout << "3 - Afficher Tout les objets Messiers de niveau facile actuellement visible" << endl;
-	cout << "4 - Afficher les informations d'un objet Messier specifique" << endl;
-	cout << "5 - Afficher le menu" << endl;
+	cout << "2 - Afficher Tout les objets Messiers de niveau facile actuellement visible" << endl;
+	cout << "3 - Afficher les informations d'un objet Messier specifique" << endl;
 	cout << "0 - Fermer le programme" << endl;
 }
 
@@ -292,18 +290,13 @@ int main() {
 
 			case 2 :
 				testFacile(objetsMessier);
-				afficherListe("Liste des objets Messiers faciles", objetsMessier);
-				break;
-
-			case 3 :
-				testFacile(objetsMessier);
 				testVisible(passagesAuMeridien, objetsMessier);
 				trouveretoileGuide(objetsMessier, etoileGuide);
 				afficherListe("Liste des objets Messiers faciles et visibles", objetsMessier);
 				afficheretoileGuide(etoileGuide);
 				break;
 
-			case 4 :
+			case 3 :
 				afficherObjet(objetsMessier);
 				break;
 
