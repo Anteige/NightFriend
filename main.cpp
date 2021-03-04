@@ -94,7 +94,6 @@ void afficherMenu() {
 	cout << "Veuiller faire un choix parmis les suivants : " << endl;
 	cout << "1 - Afficher Tout les objets Messiers actuellement visible" << endl;
 	cout << "2 - Afficher Tout les objets Messiers de niveau facile actuellement visible" << endl;
-	cout << "3 - Afficher les informations d'un objet Messier specifique" << endl;
 	cout << "0 - Fermer le programme" << endl;
 }
 
@@ -120,27 +119,6 @@ void afficherListe(string titre, ListeDesObjetsMessiers& liste) {
 		else
 			cout << endl << "Aucun objet Messier n'est visible :(" << endl;
 		cout << "________________________________________________________________________" << endl;
-}
-
-void afficherObjet(ListeDesObjetsMessiers liste) {
-	int objet = 0;
-
-	cout << "Entrez l'objet Messier :" << endl << 'M';
-	cin >> objet;
-
-	if (objet >= 0 && objet <= 110) {
-		cout << "Voici les informations trouves sur " << 'M' << objet-- << " : " << endl
-			<< "--------------------" << endl
-			<< 'M' << liste.element[objet].nom << endl
-			<< "Type: " << left << setw(17) << setfill(' ') << liste.element[objet].type << endl
-			<< "Magnitude: " << liste.element[objet].magnitude << endl
-			<< "AD: " << right << setw(2) << setfill('0') << liste.element[objet].acensionDroite.heure << ':' << right << setw(2) << setfill('0') << liste.element[objet].acensionDroite.minute << endl
-			<< "Dec: " << setw(3) << setfill(' ') << liste.element[objet].declinaison << endl
-			<< "--------------------" << endl;
-	}
-	else
-		cout << "Cet objet Messier n'existe pas." << endl;
-
 }
 
 void afficheretoileGuide(etoiles etoile) {
@@ -294,10 +272,6 @@ int main() {
 				trouveretoileGuide(objetsMessier, etoileGuide);
 				afficherListe("Liste des objets Messiers faciles et visibles", objetsMessier);
 				afficheretoileGuide(etoileGuide);
-				break;
-
-			case 3 :
-				afficherObjet(objetsMessier);
 				break;
 
 			default :
