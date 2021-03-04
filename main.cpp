@@ -6,8 +6,6 @@
 
 using namespace std;
 
-static const int N_OBJETS_MESSIERS = 110, N_DE_MOIS = 12, N_DE_PERIODE = 3, N_MAX_CHAR_TYPE = 20;
-
 enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
 
 enum Moments { DUSK, NIGHT, MORM };
@@ -26,8 +24,8 @@ struct Informations {
 };
 
 struct ListeDesObjetsMessiers {
-	int taille = N_OBJETS_MESSIERS;
-	Informations element[N_OBJETS_MESSIERS];
+	int taille = 110;
+	Informations element[110];
 };
 
 struct etoiles {
@@ -37,19 +35,19 @@ struct etoiles {
 };
 
 struct Tableau3Variables {
-	int taille1 = N_DE_PERIODE, taille2 = N_DE_MOIS;
-	double element[N_DE_PERIODE][N_DE_MOIS];
+	int taille1 = 3, taille2 = 12;
+	double element[3][12];
 };
 
 void lirefichierbinaire(ListeDesObjetsMessiers& objetsMessier) {
 
-	char chaine[N_MAX_CHAR_TYPE];
+	char chaine[20];
 
 	ifstream fichierBinaire("Liste des objets", ios::binary);
 
 	fichierBinaire.seekg(0, ios::beg);
 
-	for (int i = 0; i < N_OBJETS_MESSIERS; i++) {
+	for (int i = 0; i < objetsMessier.taille; i++) {
 
 		fichierBinaire.read((char*)&objetsMessier.element[i].nom, sizeof(int));
 
