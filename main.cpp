@@ -163,8 +163,8 @@ void testVisible(const Tableau3Variables& passagesAuMeridien, ListeDesObjetsMess
 }
 
 void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
-	for (int i = 0; i < liste.taille; i++) {
-		if (liste.element[i].estAffiche == true) {
+	for (int i = 0; i < liste.taille; ++i) {
+		if (liste.element[i].estAffiche) {
 			if (0 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 3) {
 				etoileGuide.nom = "Mirach";
 				etoileGuide.constellation = "Andromeda";
