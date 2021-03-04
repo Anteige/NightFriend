@@ -6,9 +6,8 @@
 
 using namespace std;
 
-enum Mois { JAN, FEV, MAR, AVR, MAI, JUN, JUL, AOU, SEP, OCT, NOV, DEC };
-
-enum Moments { DUSK, NIGHT, MORM };
+enum Months { JAN, FEV, MAR, AVR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC };
+enum NightTime { DUSK, NIGHT, MORM };
 
 struct AcensionDroite {
 	int heure, minute;
@@ -73,10 +72,10 @@ void initialiserTableau3Variables(Tableau3Variables& passagesAuMeridien) {
 		passagesAuMeridien.element[DUSK + i][FEV] = 1.5 + 3 * (i + 2);
 		passagesAuMeridien.element[DUSK + i][MAR] = 1.5 + 3 * (i + 2);
 		passagesAuMeridien.element[DUSK + i][AVR] = 1.5 + 3 * (i + 3);
-		passagesAuMeridien.element[DUSK + i][MAI] = 1.5 + 3 * (i + 4);
+		passagesAuMeridien.element[DUSK + i][MAY] = 1.5 + 3 * (i + 4);
 		passagesAuMeridien.element[DUSK + i][JUN] = 1.5 + 3 * (i + 4);
 		passagesAuMeridien.element[DUSK + i][JUL] = 1.5 + 3 * (i + 5);
-		passagesAuMeridien.element[DUSK + i][AOU] = 1.5 + 3 * (i + 6);
+		passagesAuMeridien.element[DUSK + i][AUG] = 1.5 + 3 * (i + 6);
 		passagesAuMeridien.element[DUSK + i][SEP] = 1.5 + 3 * (i + 6);
 		passagesAuMeridien.element[DUSK + i][OCT] = 1.5 + 3 * (i + 7);
 	}
@@ -231,7 +230,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 	}
 }
 
-int main() {
+int MAYn() {
 
 	etoiles etoileGuide;
 
