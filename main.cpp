@@ -163,16 +163,15 @@ void testVisible(const Tableau3Variables& passagesAuMeridien, ListeDesObjetsMess
 }
 
 void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
-	bool estTrouve = false;
 	for (int i = 0; i < liste.taille; i++) {
-		if (liste.element[i].estAffiche == true && !estTrouve) {
+		if (liste.element[i].estAffiche == true) {
 			if (0 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 3) {
 				etoileGuide.nom = "Mirach";
 				etoileGuide.constellation = "Andromeda";
 				etoileGuide.declinaison = 35;
 				etoileGuide.acensionDroite.heure = 1;
 				etoileGuide.acensionDroite.minute = 9;
-				estTrouve = true;
+				break;
 			}
 			else if (3 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 6) {
 				etoileGuide.nom = "Aldebaran";
@@ -180,7 +179,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 16;
 				etoileGuide.acensionDroite.heure = 4;
 				etoileGuide.acensionDroite.minute = 35;
-				estTrouve = true;
+				break;
 			}
 			else if (6 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 9) {
 				etoileGuide.nom = "Pollux";
@@ -188,7 +187,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 28;
 				etoileGuide.acensionDroite.heure = 7;
 				etoileGuide.acensionDroite.minute = 45;
-				estTrouve = true;
+				break;
 			}
 			else if (9 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 12) {
 				etoileGuide.nom = "Algieba";
@@ -196,7 +195,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 19;
 				etoileGuide.acensionDroite.heure = 10;
 				etoileGuide.acensionDroite.minute = 19;
-				estTrouve = true;
+				break;
 			}
 			else if (12 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 15) {
 				etoileGuide.nom = "Alkaid";
@@ -204,7 +203,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 49;
 				etoileGuide.acensionDroite.heure = 13;
 				etoileGuide.acensionDroite.minute = 47;
-				estTrouve = true;
+				break;
 			}
 			else if (15 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 18) {
 				etoileGuide.nom = "Kornephoros";
@@ -212,7 +211,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 21;
 				etoileGuide.acensionDroite.heure = 16;
 				etoileGuide.acensionDroite.minute = 30;
-				estTrouve = true;
+				break;
 			}
 			else if (18 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 21) {
 				etoileGuide.nom = "Albireo";
@@ -220,7 +219,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 27;
 				etoileGuide.acensionDroite.heure = 19;
 				etoileGuide.acensionDroite.minute = 30;
-				estTrouve = true;
+				break;
 			}
 			else if (21 <= liste.element[i].acensionDroite.heure && liste.element[i].acensionDroite.heure < 24) {
 				etoileGuide.nom = "Matar";
@@ -228,7 +227,7 @@ void trouveretoileGuide(ListeDesObjetsMessiers liste, etoiles& etoileGuide) {
 				etoileGuide.declinaison = 30;
 				etoileGuide.acensionDroite.heure = 22;
 				etoileGuide.acensionDroite.minute = 43;
-				estTrouve = true;
+				break;
 			}
 		}
 	}
